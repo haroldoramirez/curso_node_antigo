@@ -17,10 +17,19 @@ app.get("/user", function(req, res) {
 
 });
 
-app.delete("/user", function(req, res) {
+app.get("/user/:nome", function(req, res) {
 
     res.send({
-        nome: "Haroldo - DELETADO"
+        nome: req.params.nome
+    });
+
+});
+
+app.get("/user/:nome/sobrenome/:sobrenome", function(req, res) {
+
+    res.send({
+        nome: req.params.nome,
+        sobrenome: req.params.sobrenome
     });
 
 });
