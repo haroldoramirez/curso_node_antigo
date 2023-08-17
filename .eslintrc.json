@@ -3,7 +3,13 @@
     "extends": ["eslint:recommended", "plugin:node/recommended"],
     "plugins": ["prettier"],
     "rules": {
-        "prettier/prettier": "error"
+        "prettier/prettier": [
+            "error",
+            {  
+                "endOfLine": "auto" //remover o erro de Delete CR
+            }
+        
+        ]
     }
 
 }
