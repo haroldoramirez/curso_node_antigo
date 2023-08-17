@@ -1,9 +1,9 @@
 import express from 'express';
 
-const app = express();
+const app = express()
 
 app.get('/', function (req, res) {
-  res.send('Hello World teste');
+  res.send('Hello World teste com eslint');
 });
 
 app.get('/user', function (req, res) {
