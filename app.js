@@ -1,39 +1,30 @@
-//import {express} from 'express';
-const express = require("express");
+import express from 'express';
 
 const app = express();
 
-app.get("/", function(req, res) {
-
-    res.send("Hello World teste");
-
+app.get('/', function (req, res) {
+  res.send('Hello World teste');
 });
 
-app.get("/user", function(req, res) {
-
-    res.send({
-        nome: "Haroldo"
-    });
-
+app.get('/user', function (req, res) {
+  res.send({
+    nome: 'Haroldo',
+  });
 });
 
-app.get("/user/:nome", function(req, res) {
-
-    res.send({
-        nome: req.params.nome
-    });
-
+app.get('/user/:nome', function (req, res) {
+  res.send({
+    nome: req.params.nome,
+  });
 });
 
-app.get("/user/:nome/sobrenome/:sobrenome", function(req, res) {
-
-    res.send({
-        nome: req.params.nome,
-        sobrenome: req.params.sobrenome
-    });
-
+app.get('/user/:nome/sobrenome/:sobrenome', function (req, res) {
+  res.send({
+    nome: req.params.nome,
+    sobrenome: req.params.sobrenome,
+  });
 });
 
-app.listen(8080, function() {
-    console.log("Servidor rodando");
-})
+app.listen(8080, function () {
+  console.log('Servidor rodando');
+});
