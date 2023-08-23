@@ -1,6 +1,7 @@
 import { Request, Response, Router } from 'express';
 import { createUser, getUsers } from './user.service';
 import { UserInsertDTO } from './dtos/user-insert.dto';
+import { NotFoundException } from '@exceptions/not-found-exception';
 
 export const userRouter = Router();
 
@@ -9,8 +10,18 @@ const router = Router();
 userRouter.use('/user', router);
 
 router.get('/', async (_, res: Response): Promise<void> => {
-  const users = await getUsers();
+
+  const users = await getUsers().catch((error) => {
+    if (error instanceof NotFoundException) {
+      res.status(204); // No Content
+    } else {
+      res.status(500).send(error.message) // Internal Server Error
+    }
+
+  });
+
   res.send(users);
+
 });
 
 router.post(
