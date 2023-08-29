@@ -12,9 +12,8 @@ const router = Router();
 userRouter.use('/user', router);
 
 router.get('/', async (req: Request, res: Response): Promise<void> => {
-
   const authorization = req.headers.authorization;
-  
+
   verifyToken(authorization).catch((error) => {
     new ReturnError(res, error);
   });

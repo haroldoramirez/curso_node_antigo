@@ -21,25 +21,17 @@ export const generateToken = (user: UserModel): string => {
 };
 
 export const verifyToken = async (authorization?: string): Promise<UserAuthDTO> => {
+  if (!authorization) {
+    throw new UnauthorizedException();
+  }
 
-    if (!authorization) {
+  const [, token] = authorization.split(' ');
 
-        throw new UnauthorizedException(); 
-        
-    }
+  try {
+    const decodedToken = <UserAuthDTO>verify(token, PASSWORD_JWT);
 
-    const [, token] = authorization.split(' ');
-
-    try {
-
-        const decodedToken = <UserAuthDTO> verify(token, PASSWORD_JWT);
-    
-        return decodedToken;
-
-    } catch (error) {
-
-        throw new UnauthorizedException();
-
-    }
-
-}
+    return decodedToken;
+  } catch (error) {
+    throw new UnauthorizedException();
+  }
+};
