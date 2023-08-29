@@ -1,5 +1,4 @@
 export class AppException extends Error {
-
   errorCode: number;
 
   constructor(message: string, errorCode: number) {
