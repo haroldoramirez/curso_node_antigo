@@ -1,4 +1,4 @@
-import { PrismaClient, User } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 import { UserModel } from './user.model';
 import { UserInsertDTO } from './dtos/user-insert.dto';
 import { NotFoundException } from '@exceptions/not-found-exception';
@@ -61,7 +61,7 @@ export const createUser = async (body: UserInsertDTO): Promise<UserModel> => {
   const user: UserInsertDTO = {
     ...body,
     password: await createPasswordHashed(body.password),
-  }
+  };
 
   return prisma.user.create({
     data: user,
